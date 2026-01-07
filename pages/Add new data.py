@@ -1,3 +1,4 @@
+'''
 import streamlit as st
 import pandas as pd
 from pathlib import Path
@@ -50,5 +51,5 @@ if st.button("💾 Save"):
     else:
         append_qa(CSV_PATH, question, answer)
         st.success("✅ Question & Answer added successfully!")
-
+'''
         
