@@ -1,184 +1,246 @@
-End-to-End NLP Development: Intelligent Conversational Chatbot
-ChatGTP (General Text Processing)
---------------------------------------------------------------------
-Project Overview
+# NLP Chatbot — Semantic Similarity-Based Question Answering
 
-This project implements an end-to-end Natural Language Processing (NLP) based conversational chatbot that answers general knowledge questions using semantic similarity instead of keyword matching.
+An end-to-end Natural Language Processing (NLP) chatbot that answers general knowledge questions using **sentence embeddings and semantic similarity**.
 
-The chatbot processes raw text data, understands the meaning of user queries, and retrieves the most relevant factual answer from a structured dataset.
+🔗 **GitHub Repository:** [NLP_Chatbot](https://github.com/ashish-wandhare/NLP_Chatbot)
 
-This project is designed as a first NLP project to understand the complete NLP pipeline, from raw text to an intelligent conversational system.
+---
 
-Objectives
+## 📌 Project Overview
 
-Build an NLP chatbot from raw text data
+This project implements an intelligent conversational chatbot that retrieves factual answers from a structured question-answer dataset using semantic similarity rather than traditional keyword matching.
 
-Understand semantic similarity using sentence embeddings
+The chatbot processes natural language queries, converts questions into sentence embeddings, and identifies the most relevant question in the dataset using cosine similarity.
 
-Retrieve accurate answers from a fact-based dataset
+Once a suitable match is found, the chatbot retrieves and returns its corresponding answer.
 
-Avoid hallucination by using retrieval-based NLP
+The system follows a retrieval-based NLP approach, making it suitable for answering questions from a predefined knowledge base without generating new answers using an LLM.
 
-Design a clean and modular NLP pipeline
+## 🎯 Project Objectives
 
+- Build an end-to-end NLP chatbot using Python.
+- Understand semantic similarity using sentence embeddings.
+- Retrieve relevant factual answers from a structured dataset.
+- Implement confidence-based answer retrieval.
+- Reduce incorrect responses through retrieval-based NLP.
+- Develop a clean and modular NLP pipeline.
 
-📂 Dataset Description
+## ✨ Key Features
 
-Dataset type: General Knowledge Question–Answer Dataset
+- **Semantic Understanding:** Matches questions based on meaning rather than exact keywords.
+- **Sentence Embeddings:** Converts natural language questions into numerical representations.
+- **Similarity Matching:** Uses cosine similarity to identify the most relevant question.
+- **Fact-Based Retrieval:** Returns answers from the existing dataset.
+- **Confidence Threshold:** Provides a fallback response when similarity is below the predefined threshold.
+- **Modular Architecture:** Separates data loading, preprocessing, semantic matching, and chatbot logic.
+- **Paraphrase Handling:** Supports differently worded questions with similar meanings.
 
-Format: CSV
+## 📂 Dataset Description
 
-Total records: 930
+The chatbot uses a General Knowledge Question–Answer dataset stored in CSV format.
 
-Columns:3 question,answer,question_type
+| Property | Description |
+|---|---|
+| Dataset | General Knowledge Q&A |
+| File Format | CSV |
+| Total Records | 930 |
+| Columns | `question`, `answer`, `question_type` |
 
-question – natural language General Knowledge questions
+### Dataset Columns
 
-answer – factual answers
+- `question` — Natural language general knowledge questions.
+- `answer` — Corresponding factual answers.
+- `question_type` — Difficulty labels such as `kid`, `class_1`, through `class_7`.
 
-question_type – difficulty labels (kid,class_1..to..class_7)
+In the current implementation, all questions are used together to maximize semantic coverage. Difficulty-level filtering is not enabled.
 
-In the current implementation, all questions are used together to maximize semantic coverage.
-In this I am not using difficulty labels.
+## 🔄 NLP Pipeline
 
+The chatbot follows an end-to-end NLP pipeline:
 
-NLP Pipeline (End-to-End)
-Raw CSV Data
-   ↓
+```text
+Raw CSV Dataset
+      ↓
 Data Loading
-   ↓
+      ↓
 Text Preprocessing
-   ↓
+      ↓
 Sentence Embeddings
-   ↓
+      ↓
 Semantic Similarity Matching
-   ↓
+      ↓
 Best Answer Retrieval
-   ↓
+      ↓
+Confidence Threshold Validation
+      ↓
 Conversational Response
+```
 
-🛠️ Technologies Used
+## ⚙️ How the Chatbot Works
 
-Python 3.12
+1. **Data Loading**  
+   Loads general knowledge questions and answers from the CSV dataset.
 
-Pandas – data handling
+2. **Text Preprocessing**  
+   Cleans the input text while preserving its meaning.
 
-Regular Expressions (re) – text cleaning
+3. **Sentence Embedding Generation**  
+   Converts dataset questions into semantic vector representations using Sentence Transformers.
 
-Sentence Transformers – semantic embeddings
+4. **User Query Processing**  
+   Converts the user's question into a sentence embedding.
 
-Scikit-learn – cosine similarity
+5. **Semantic Similarity Matching**  
+   Computes cosine similarity between the user query and dataset questions.
 
-VS Code – development environment
+6. **Answer Retrieval**  
+   Identifies the best-matching question and retrieves its corresponding factual answer.
 
-📁 Project Structure
+7. **Confidence Validation**  
+   Checks the similarity score against a predefined confidence threshold.
+
+8. **Response Generation**  
+   Returns the retrieved answer or a fallback response when confidence is insufficient.
+
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| Python 3.12 | Core programming language |
+| Pandas | Dataset loading and data handling |
+| Regular Expressions (`re`) | Text preprocessing |
+| Sentence Transformers | Sentence embeddings |
+| Scikit-learn | Cosine similarity |
+| VS Code | Development environment |
+
+## 📁 Project Structure
+
+```text
 NLP_Chatbot/
-│── data/
+│
+├── data/
 │   └── general_knowledge_qa.csv
 │
-│── src/
+├── src/
 │   ├── data_loading.py
 │   ├── preprocessing.py
 │   ├── semantic_matching.py
-│   ├── chatbot_engine.py
+│   └── chatbot_engine.py
 │
-│── app.py
-│── requirements.txt
-│── README.md
-│── venv/
+├── app.py
+├── requirements.txt
+├── README.md
+└── venv/
+```
 
-⚙️ How the Chatbot Works
+## 💬 Sample Interaction
 
-Loads the dataset from CSV
-
-Cleans raw text while preserving meaning
-
-Converts questions into semantic embeddings
-
-Converts user input into an embedding
-
-Computes similarity using cosine similarity
-
-Retrieves the most relevant factual answer
-
-Returns a fallback response if confidence is low
-
-💬 Sample Interaction
-You: how many letters in english
+```text
+You: How many letters are there in the English alphabet?
 Bot: 26
 
-You: which bird has largest egg
+You: Which bird has the largest egg?
 Bot: Ostrich
 
-You: location of Eden Gardens
+You: Where is Eden Gardens located?
 Bot: Calcutta
+```
 
+## 🚀 Getting Started
 
-The chatbot successfully handles:
+### Prerequisites
 
-Paraphrased questions
+- Python 3.12
+- Git
+- VS Code (recommended)
 
-Minor spelling mistakes
+### 1. Clone the Repository
 
-Semantic understanding
+```bash
+git clone https://github.com/ashish-wandhare/NLP_Chatbot.git
+```
 
-✅ Key Features
+### 2. Navigate to the Project Directory
 
-Semantic understanding (not keyword-based)
+```bash
+cd NLP_Chatbot
+```
 
-Fact-based answer retrieval
+### 3. Create a Virtual Environment
 
-No hallucination or answer generation
+```bash
+python -m venv venv
+```
 
-Robust to spelling variations
+### 4. Activate the Virtual Environment
 
-Clean modular NLP design
+**Windows PowerShell:**
 
-🚀 How to Run the Project
+```powershell
+.\venv\Scripts\Activate.ps1
+```
 
-Create and activate a virtual environment
+### 5. Install Dependencies
 
-Install dependencies:
-
+```bash
 pip install -r requirements.txt
+```
 
+### 6. Run the Chatbot
 
-Run the chatbot:
-
+```bash
 python app.py
+```
 
-📌 Design Decision
+## 🧠 Design Decisions
 
-Although the dataset includes difficulty levels, level-based filtering was intentionally disabled in the current version to improve answer accuracy due to limited data per category.
+### Retrieval-Based NLP Approach
 
-This design choice ensures:
+The chatbot uses semantic similarity to retrieve answers from a predefined dataset rather than generating new answers.
 
-Better semantic coverage
+This approach was selected to:
 
-Improved chatbot performance
+- Keep responses aligned with the dataset's factual answers.
+- Avoid relying on generative AI for answer creation.
+- Provide a simple and interpretable NLP architecture.
 
-Simpler user interaction
+### Difficulty-Level Filtering
 
-🔮 Future Improvements
+Although the dataset contains question difficulty labels, level-based filtering is intentionally disabled in the current implementation.
 
-Automatic difficulty-level detection
+All questions are used together to:
 
-Web interface using Streamlit
+- Maximize semantic coverage.
+- Improve the availability of relevant matches.
+- Simplify user interaction.
 
-Top-k answer suggestions
+## ✅ Answer Validation
 
-Improved answer formatting
+The chatbot uses cosine similarity scores computed from sentence embeddings to determine the relevance of a user query to dataset questions.
 
-Larger knowledge base
+A predefined confidence threshold determines whether an answer should be returned.
 
-Answer Validation Criteria:
-The correctness of chatbot responses is determined using semantic similarity scores computed via cosine similarity on sentence embeddings. Answers are returned only when similarity exceeds a predefined confidence threshold, ensuring alignment with ground truth responses from the dataset.
+- If the similarity score exceeds the threshold, the corresponding answer is retrieved.
+- If the similarity score is below the threshold, a fallback response is returned.
 
-🏁 Conclusion
+This helps reduce irrelevant answers when the user's query does not sufficiently match the dataset.
 
-This project demonstrates a complete end-to-end NLP system that converts raw text data into an intelligent conversational chatbot using semantic similarity. It serves as a strong foundation for learning practical NLP concepts and building more advanced conversational AI systems in the future.
+## 🔮 Future Improvements
 
-👤 Author
+- Automatic difficulty-level detection.
+- Streamlit-based web interface.
+- Top-k answer suggestions.
+- Improved answer formatting.
+- Expanded knowledge base.
+- Enhanced query preprocessing and matching.
 
-Ashish Wandhare
-NLP Project
+## 🏁 Conclusion
+
+This project demonstrates the development of an end-to-end NLP chatbot using sentence embeddings and semantic similarity.
+
+It covers the complete pipeline from raw question-answer data to semantic matching and factual answer retrieval, providing a practical foundation for understanding NLP and building more advanced conversational systems.
+
+---
+- GitHub: [Repository](https://github.com/ashish-wandhare/NLP_Chatbot)
+- Streamlit Cloud: [Live Demo](https://nlpchatbot-bzbocjsas2my6v7zfnsxkv.streamlit.app/)
+- AWS EC2: [Live Demo](http://13.239.147.87:8501/)
