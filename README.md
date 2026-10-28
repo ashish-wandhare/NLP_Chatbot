@@ -244,3 +244,11 @@ It covers the complete pipeline from raw question-answer data to semantic matchi
 - GitHub: [Repository](https://github.com/ashish-wandhare/NLP_Chatbot)
 - Streamlit Cloud: [Live Demo](https://nlpchatbot-bzbocjsas2my6v7zfnsxkv.streamlit.app/)
 - AWS EC2: [Live Demo](http://13.239.147.87:8501/)
+
+## 📸 Application Screenshots
+<img width="1917" height="950" alt="1_main_page" src="https://github.com/user-attachments/assets/7b0cc033-3f7d-4b56-a61e-0ec5b6f68312" />
+<img width="1917" height="948" alt="2_chatting1" src="https://github.com/user-attachments/assets/d37cb3d6-9924-4c98-bf35-129ea02b82d8" />
+<img width="1900" height="951" alt="3_chatting2" src="https://github.com/user-attachments/assets/e7d0fa77-47b3-4d49-9175-2aa9d1ed7440" />
+<img width="1917" height="920" alt="4_Description" src="https://github.com/user-attachments/assets/29f61d4b-3d9c-494d-8b26-236626d9f957" />
+<img width="1917" height="937" alt="5_Question_list" src="https://github.com/user-attachments/assets/a602c998-52cf-4d73-9057-9edac860e9ed" />
+
